@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:qoorant/constants/app_routes.dart';
+import 'package:qoorant/pages/onboarding/onboarding_page.dart';
 import 'package:qoorant/pages/splash/splash_page.dart';
+import 'package:qoorant/themes/themes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,11 +18,18 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Qoorant',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const SplashPage(),
+      theme: MyAppTheme.lighTheme,
+      initialRoute: AppRoutes.SPLASH_ROUTE,
+      getPages: [
+        GetPage(
+          name: AppRoutes.SPLASH_ROUTE,
+          page: () => const SplashPage(),
+        ),
+        GetPage(
+          name: AppRoutes.ONBORADING_ROUTE,
+          page: () => const OnboardingPage(),
+        ),
+      ],
     );
   }
 }
